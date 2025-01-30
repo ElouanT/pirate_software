@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		acceleration += 0.1
 		velocity = velocity.lerp(Vector2(0,0), delta * acceleration)
 		
-		if abs(velocity.y) < 200:
+		if abs(velocity.x) < 200 && abs(velocity.y) < 200:
 			shooted = false
 
 func shoot():
