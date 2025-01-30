@@ -1,3 +1,48 @@
-[gd_scene format=3 uid="uid://dwqhue23uel05"]
+[gd_scene load_steps=5 format=3 uid="uid://dwqhue23uel05"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://dql2o13n2enh5" path="res://scenes/player.tscn" id="1_rqgtf"]
+[ext_resource type="PackedScene" uid="uid://clsq714wwklsi" path="res://scenes/cap.tscn" id="2_l7y5c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nw70g"]
+distance = -325.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ugj1s"]
+distance = -576.0
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_rqgtf")]
+
+[node name="Cap" parent="." instance=ExtResource("2_l7y5c")]
+position = Vector2(-100, -57)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_nw70g")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="Right" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_ugj1s")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+rotation = -3.14159
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_nw70g")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="Right" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_ugj1s")
+one_way_collision = true
+one_way_collision_margin = 128.0
